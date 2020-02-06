@@ -128,6 +128,7 @@ export interface IOption {
   optHeader?: boolean;
   markup?: React.ReactNode;
   disabled?: boolean;
+  image?: string;
 }
 
 export interface IOutputSingleSelect {
