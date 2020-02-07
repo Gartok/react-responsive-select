@@ -105,7 +105,7 @@ export class SingleSelectOption extends React.Component<TProps> {
         {option.image &&
           <img  src={option.image} />
         }
-        {option.markup || option.text}
+        <span>{option.markup || option.text}</span>
       </li>
     );
   }
