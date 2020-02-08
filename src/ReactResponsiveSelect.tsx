@@ -177,6 +177,8 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
       name,
       nextPotentialSelectionIndex,
       options,
+      backButtonName,
+      title,
       singleSelectSelectedIndex,
       singleSelectSelectedOption,
       multiselect,
@@ -237,9 +239,9 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
               isOptionsPanelOpen={isOptionsPanelOpen}
               options={options}
               selectBoxRef={this.selectBox}
-              title={this.props.title}
+              title={title}
               onHandleClick={this.onHandleClick}
-              backButtonName={this.props.backButtonName}
+              backButtonName={backButtonName}
             />
           )}
       </div>

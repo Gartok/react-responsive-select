@@ -1,7 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
-import { nextValidIndex } from '../lib/nextValidIndex';
-import { IAction, IOption, IState } from '../types/';
 
+import { IAction, IOption, IState } from '../types/';
 import {
   addMultiSelectIndex,
   addMultiSelectOption,
@@ -15,6 +14,8 @@ import {
   removeMultiSelectOption,
   resetMultiSelectState,
 } from './lib';
+
+import { nextValidIndex } from '../lib/nextValidIndex';
 
 export function reducer(state: IState, action: IAction): IState {
   switch (action.type) {
@@ -45,6 +46,8 @@ export function reducer(state: IState, action: IAction): IState {
         options: action.value.options,
         altered: action.value.altered || false,
         disabled: action.value.disabled || false,
+        backButtonName: action.value.backButtonName,
+        title: action.value.title,
 
         // Single select
         singleSelectInitialIndex: initialSelectedIndex,
