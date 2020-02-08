@@ -180,7 +180,7 @@ export class SingleSelect extends React.Component<TProps> {
             />
           )}
         </div>
-        <div className="rrs_title">
+        <div className="rrs_title d-block d-md-none">
             <button type="button" onClick={this.props.onHandleClick} className="btn btn-link rrs_title_button button_close">{backButtonName}</button>
 
             <span className="rrs_title_value">{title}</span>
