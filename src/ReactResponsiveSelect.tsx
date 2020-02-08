@@ -1,16 +1,17 @@
 import * as React from 'react';
-import singleline from 'singleline-next';
 import * as actionTypes from './constants/actionTypes';
-import { handleBlur, handleClick, handleKeyEvent, handleTouchMove, handleTouchStart } from './lib/eventHandlers';
-import { getCustomLabelText } from './lib/getCustomLabelText';
-import { multiSelectBroadcastChange, singleSelectBroadcastChange } from './lib/onChangeBroadcasters';
-import { initialState } from './reducers/initialState';
-import { reducer } from './reducers/reducer';
-import { isEqual } from './lib/isEqual';
+
 import { IAction, IProps, IState } from './types/';
+import { handleBlur, handleClick, handleKeyEvent, handleTouchMove, handleTouchStart } from './lib/eventHandlers';
+import { multiSelectBroadcastChange, singleSelectBroadcastChange } from './lib/onChangeBroadcasters';
 
 import { MultiSelect } from './components/MultiSelect';
 import { SingleSelect } from './components/SingleSelect';
+import { getCustomLabelText } from './lib/getCustomLabelText';
+import { initialState } from './reducers/initialState';
+import { isEqual } from './lib/isEqual';
+import { reducer } from './reducers/reducer';
+import singleline from 'singleline-next';
 
 export default class ReactResponsiveSelect extends React.Component<IProps, IState> {
   public selectBox: HTMLDivElement | null;
@@ -33,6 +34,8 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
       name,
       multiselect,
       disabled,
+      backButtonName,
+      title
     } = this.props;
 
     this.updateState({
@@ -45,6 +48,8 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
         name,
         multiselect,
         disabled,
+        backButtonName,
+        title
       },
     });
   }
@@ -144,12 +149,12 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
   }
 
   public onHandleClick = (e: any): void => {
-      handleClick({
-        event: e,
-        RRSClassRef: this,
-        state: this.state,
-      });
-    }
+    handleClick({
+      event: e,
+      RRSClassRef: this,
+      state: this.state,
+    });
+  }
 
   public onHandleBlur = (): void => {
     handleBlur({
@@ -172,6 +177,8 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
       name,
       nextPotentialSelectionIndex,
       options,
+      backButtonName,
+      title,
       singleSelectSelectedIndex,
       singleSelectSelectedOption,
       multiselect,
@@ -219,21 +226,24 @@ export default class ReactResponsiveSelect extends React.Component<IProps, IStat
             selectBoxRef={this.selectBox}
           />
         ) : (
-          <SingleSelect
-            noSelectionLabel={noSelectionLabel || ''}
-            disabled={Boolean(disabled)}
-            caretIcon={caretIcon}
-            prefix={prefix || ''}
-            name={name}
-            customLabelText={customLabelText}
-            singleSelectSelectedOption={singleSelectSelectedOption}
-            singleSelectSelectedIndex={singleSelectSelectedIndex}
-            nextPotentialSelectionIndex={nextPotentialSelectionIndex}
-            isOptionsPanelOpen={isOptionsPanelOpen}
-            options={options}
-            selectBoxRef={this.selectBox}
-          />
-        )}
+            <SingleSelect
+              noSelectionLabel={noSelectionLabel || ''}
+              disabled={Boolean(disabled)}
+              caretIcon={caretIcon}
+              prefix={prefix || ''}
+              name={name}
+              customLabelText={customLabelText}
+              singleSelectSelectedOption={singleSelectSelectedOption}
+              singleSelectSelectedIndex={singleSelectSelectedIndex}
+              nextPotentialSelectionIndex={nextPotentialSelectionIndex}
+              isOptionsPanelOpen={isOptionsPanelOpen}
+              options={options}
+              selectBoxRef={this.selectBox}
+              title={title}
+              onHandleClick={this.onHandleClick}
+              backButtonName={backButtonName}
+            />
+          )}
       </div>
     );
   }

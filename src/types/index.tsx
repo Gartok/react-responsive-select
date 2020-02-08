@@ -9,6 +9,8 @@ export interface IProps {
     markup?: React.ReactNode;
     disabled?: boolean;
   }>;
+  backButtonName?: string;
+  title?: string;
   noSelectionLabel?: string;
   onSubmit?: (event: any) => void;
   /**
@@ -113,6 +115,8 @@ export interface IState {
     name?: string;
     value?: string;
   };
+  backButtonName?: string;
+  title?: string;
 }
 
 /*

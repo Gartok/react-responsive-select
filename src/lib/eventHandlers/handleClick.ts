@@ -1,8 +1,8 @@
 import * as actionTypes from '../../constants/actionTypes';
-import ReactResponsiveSelect from '../../ReactResponsiveSelect';
-import { containsClassName } from '../containsClassName';
 
 import { IState } from '../../types/';
+import ReactResponsiveSelect from '../../ReactResponsiveSelect';
+import { containsClassName } from '../containsClassName';
 
 interface TArgs {
   event: MouseEvent | KeyboardEvent;
@@ -57,7 +57,8 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
       isOptionsPanelOpen &&
       // button on desktop (rrs__label) or overlay on small screen (rrs)
       (containsClassName(event.target as HTMLElement, 'rrs__label') ||
-        containsClassName(event.target as HTMLElement, 'rrs'))
+        containsClassName(event.target as HTMLElement, 'rrs')
+        || containsClassName(event.target as HTMLElement, 'button_close'))
     ) {
       RRSClassRef.updateState(
         {

@@ -18,6 +18,9 @@ interface TProps {
   customLabelText: React.ReactNode;
   disabled: boolean;
   options: IOption[];
+  title?: string;
+  backButtonName?: string;
+  onHandleClick?: any;
 }
 
 export class SingleSelect extends React.Component<TProps> {
@@ -138,6 +141,8 @@ export class SingleSelect extends React.Component<TProps> {
   public render(): React.ReactNode {
     const {
       customLabelText,
+      title,
+      backButtonName,
       disabled,
       isOptionsPanelOpen,
       name,
@@ -175,7 +180,14 @@ export class SingleSelect extends React.Component<TProps> {
             />
           )}
         </div>
+        <div className="rrs_title">
+            <button type="button" onClick={this.props.onHandleClick} className="btn btn-link rrs_title_button button_close">{backButtonName}</button>
 
+            <span className="rrs_title_value">{title}</span>
+            
+            <span></span>
+        </div>
+        
         <ul
           id={`rrs-${name}-menu`}
           aria-labelledby={`rrs-${name}-label`}
