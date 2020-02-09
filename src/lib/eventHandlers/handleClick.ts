@@ -21,7 +21,7 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
 
   if (disabled) return;
 
-  if (isDragging === false) {
+  if (isDragging === false && event) {
     /* Disallow natural event flow - don't allow blur to happen from button focus to selected option focus */
     event.preventDefault();
 
@@ -84,5 +84,17 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
         }
       },
     );
+  } else {
+    if (
+      isOptionsPanelOpen) {
+      RRSClassRef.updateState(
+        {
+          type: actionTypes.SET_OPTIONS_PANEL_CLOSED_NO_SELECTION
+        },
+        () => RRSClassRef.focusButton(),
+      );
+
+      return;
+    }
   }
 }
