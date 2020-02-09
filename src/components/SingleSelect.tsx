@@ -18,7 +18,7 @@ interface TProps {
   customLabelText: React.ReactNode;
   disabled: boolean;
   options: IOption[];
-  title?: string;
+  title?: any;
   backButtonName?: string;
   onHandleClick?: any;
 }
@@ -201,7 +201,7 @@ export class SingleSelect extends React.Component<TProps> {
           {isOptionsPanelOpen &&
             <div id={`rss-${name}-subtitle`} className="rrs_subtitle d-flex d-md-none">
               <div className="rrs_title_item">
-                <span id={`rss-${name}-title-mobile`} className="rrs_title_value">{title}</span>
+              <i className="fa fa-chevron-left"></i><span id={`rss-${name}-title-mobile`} className="rrs_title_value">{title}</span>
               </div>
             </div>
           }

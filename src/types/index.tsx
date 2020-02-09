@@ -130,7 +130,7 @@ export interface IState {
 export interface IOption {
   subtitle?: any;
   arrow?: any;
-  text?: string;
+  text?: any;
   value?: string;
   optHeader?: boolean;
   markup?: React.ReactNode;
