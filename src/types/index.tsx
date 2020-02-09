@@ -128,6 +128,8 @@ export interface IState {
 */
 
 export interface IOption {
+  subtitle?: any;
+  arrow?: any;
   text?: string;
   value?: string;
   optHeader?: boolean;
