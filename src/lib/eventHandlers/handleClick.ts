@@ -21,7 +21,7 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
 
   if (disabled) return;
 
-  if (isDragging === false && event) {
+  if (isDragging === false && event && event != "force") {
     /* Disallow natural event flow - don't allow blur to happen from button focus to selected option focus */
     event.preventDefault();
 
