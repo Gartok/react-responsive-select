@@ -9,8 +9,7 @@ export interface IProps {
     markup?: React.ReactNode;
     disabled?: boolean;
   }>;
-  backButtonName?: string;
-  title?: string;
+  
   noSelectionLabel?: string;
   onSubmit?: (event: any) => void;
   /**
@@ -47,6 +46,8 @@ export interface IProps {
   }) => void;
   caretIcon?: React.ReactNode;
   selectedValue?: string;
+  backButtonName?: string;
+  title?: string;
   prefix?: string;
   disabled?: boolean;
   /**
