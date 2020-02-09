@@ -110,7 +110,7 @@ export class SingleSelectOption extends React.Component<TProps> {
             <span dangerouslySetInnerHTML={{__html: option.text}}></span>
             <span>{option.subtitle}</span>
           </div>
-          {option.arrow}
+          &#8250;
         </div>
       </li>
     );
