@@ -185,11 +185,14 @@ export class SingleSelect extends React.Component<TProps> {
 
         {isOptionsPanelOpen &&
           <div id={`rss-${name}-title`} className="rrs_title d-flex d-md-none">
-            <button type="button" id={`rss-${name}-back`}  onClick={this.props.onHandleClick} className="btn btn-link rrs_title_button button_close">{backButtonName}</button>
+            <div className="rrs_title_item_button">
+              <button type="button" id={`rss-${name}-back`} onClick={this.props.onHandleClick} className="btn btn-link rrs_title_button button_close">{backButtonName}</button>
+            </div>
+            <div className="rrs_title_item">
+              <span id={`rss-${name}-title-mobile`} className="rrs_title_value">{title}</span>
 
-            <span id={`rss-${name}-title-mobile`}  className="rrs_title_value">{title}</span>
-
-            <div></div>
+              <div></div>
+            </div>
           </div>
         }
 
