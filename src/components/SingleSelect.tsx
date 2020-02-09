@@ -190,8 +190,6 @@ export class SingleSelect extends React.Component<TProps> {
             </div>
             <div className="rrs_title_item">
               <span id={`rss-${name}-title-mobile`} className="rrs_title_value">{title}</span>
-
-              <div></div>
             </div>
           </div>
         }
