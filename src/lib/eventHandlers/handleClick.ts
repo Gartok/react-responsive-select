@@ -5,7 +5,7 @@ import ReactResponsiveSelect from '../../ReactResponsiveSelect';
 import { containsClassName } from '../containsClassName';
 
 interface TArgs {
-  event: MouseEvent | KeyboardEvent;
+  event: any;
   state: IState;
   RRSClassRef: ReactResponsiveSelect;
 }
@@ -84,7 +84,7 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
         }
       },
     );
-  } else {
+  } else if (event == "force") {
     if (
       isOptionsPanelOpen) {
       RRSClassRef.updateState(
