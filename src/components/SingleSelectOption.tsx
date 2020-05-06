@@ -103,7 +103,7 @@ export class SingleSelectOption extends React.Component<TProps> {
         `)}
       >
         {option.image &&
-          <img  src={option.image} />
+          <img alt={option.text.replace("<[^>]*>", "")} src={option.image} />
         }
         <div className="rrs__option__container">
           <div className="rrs__option__subcontainer">
