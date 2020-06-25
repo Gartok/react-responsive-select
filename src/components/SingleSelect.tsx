@@ -1,7 +1,9 @@
 import * as React from 'react';
-import singleline from 'singleline-next';
+
 import { IOption, IOutputSingleSelect } from '../types/';
+
 import { SingleSelectOption } from './SingleSelectOption';
+import singleline from 'singleline-next';
 
 interface TProps {
   prefix: string;
@@ -16,6 +18,9 @@ interface TProps {
   customLabelText: React.ReactNode;
   disabled: boolean;
   options: IOption[];
+  title?: any;
+  backButtonName?: string;
+  onHandleClick?: any;
 }
 
 export class SingleSelect extends React.Component<TProps> {
@@ -72,7 +77,7 @@ export class SingleSelect extends React.Component<TProps> {
         <span
           aria-label={`${prefix ? `${prefix} ` : ''}${
             singleSelectSelectedOption.text
-          } selected`}
+            } selected`}
           className="rrs__label__text"
           id={`rrs-${name}-label`}
           data-testid={`rrs-label_${name}`}
@@ -116,7 +121,7 @@ export class SingleSelect extends React.Component<TProps> {
         <span
           aria-label={`${prefix ? `${prefix} ` : ''}${
             singleSelectSelectedOption.text
-          } selected`}
+            } selected`}
           className="rrs__label__text"
           id={`rrs-${name}-label`}
           data-testid={`rrs-label_${name}`}
@@ -125,8 +130,8 @@ export class SingleSelect extends React.Component<TProps> {
           {singleSelectSelectedOption.text ? (
             singleSelectSelectedOption.text
           ) : (
-            <div>&nbsp;</div>
-          )}
+              <div>&nbsp;</div>
+            )}
         </span>
         {caretIcon && caretIcon}
       </div>
@@ -136,6 +141,8 @@ export class SingleSelect extends React.Component<TProps> {
   public render(): React.ReactNode {
     const {
       customLabelText,
+      title,
+      backButtonName,
       disabled,
       isOptionsPanelOpen,
       name,
@@ -146,6 +153,8 @@ export class SingleSelect extends React.Component<TProps> {
     } = this.props;
 
     let optHeaderLabel: string = '';
+
+    console.log(this.props);
 
     return (
       <div>
@@ -174,6 +183,15 @@ export class SingleSelect extends React.Component<TProps> {
           )}
         </div>
 
+        {isOptionsPanelOpen &&
+          <div id={`rss-${name}-title`} className="rrs_title d-flex d-md-none">
+            <div className="rrs_title_item_button">
+              <button type="button" id={`rss-${name}-back`} onClick={this.props.onHandleClick} className="btn btn-link rrs_title_button button_close">
+              <span><span className="arrow_button">&#8249;</span> {backButtonName}</span></button>
+            </div>
+          </div>
+        }
+
         <ul
           id={`rrs-${name}-menu`}
           aria-labelledby={`rrs-${name}-label`}
@@ -181,6 +199,14 @@ export class SingleSelect extends React.Component<TProps> {
           className="rrs__options"
           ref={this.optionsContainer}
         >
+          {isOptionsPanelOpen &&
+            <div id={`rss-${name}-subtitle`} className="rrs_subtitle d-flex d-md-none">
+              <div className="rrs_title_item">
+              <span id={`rss-${name}-title-mobile`} className="rrs_title_value">{title}</span>
+              </div>
+            </div>
+          }
+
           {options.length > 0 &&
             options.map((option: IOption, index: number) => {
               if (option.optHeader) {

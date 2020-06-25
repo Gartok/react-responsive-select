@@ -1,6 +1,7 @@
 import * as React from 'react';
-import singleline from 'singleline-next';
+
 import { IOption } from '../types/';
+import singleline from 'singleline-next';
 
 interface TProps {
   index: number;
@@ -101,7 +102,15 @@ export class SingleSelectOption extends React.Component<TProps> {
           ${option.optHeader === true ? 'rrs__option--header' : ''}
         `)}
       >
-        {option.markup || option.text}
+        {option.image &&
+          <img alt={option.text.replace("<[^>]*>", "")} src={option.image} />
+        }
+        <div className="rrs__option__container">
+          <div className="rrs__option__subcontainer">
+            <span dangerouslySetInnerHTML={{__html: option.text}}></span>
+            <span className="rrs_arrow">&#8250;</span>
+          </div>
+        </div>
       </li>
     );
   }

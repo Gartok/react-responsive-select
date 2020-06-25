@@ -1,11 +1,11 @@
 import * as actionTypes from '../../constants/actionTypes';
+
+import { IState } from '../../types/';
 import ReactResponsiveSelect from '../../ReactResponsiveSelect';
 import { containsClassName } from '../containsClassName';
 
-import { IState } from '../../types/';
-
 interface TArgs {
-  event: MouseEvent | KeyboardEvent;
+  event: any;
   state: IState;
   RRSClassRef: ReactResponsiveSelect;
 }
@@ -21,7 +21,7 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
 
   if (disabled) return;
 
-  if (isDragging === false) {
+  if (isDragging === false && event && event != "force") {
     /* Disallow natural event flow - don't allow blur to happen from button focus to selected option focus */
     event.preventDefault();
 
@@ -57,7 +57,8 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
       isOptionsPanelOpen &&
       // button on desktop (rrs__label) or overlay on small screen (rrs)
       (containsClassName(event.target as HTMLElement, 'rrs__label') ||
-        containsClassName(event.target as HTMLElement, 'rrs'))
+        containsClassName(event.target as HTMLElement, 'rrs')
+        || containsClassName(event.target as HTMLElement, 'button_close'))
     ) {
       RRSClassRef.updateState(
         {
@@ -83,5 +84,17 @@ export function handleClick({ event, state, RRSClassRef }: TArgs): void {
         }
       },
     );
+  } else if (event == "force") {
+    if (
+      isOptionsPanelOpen) {
+      RRSClassRef.updateState(
+        {
+          type: actionTypes.SET_OPTIONS_PANEL_CLOSED_NO_SELECTION
+        },
+        () => RRSClassRef.focusButton(),
+      );
+
+      return;
+    }
   }
 }

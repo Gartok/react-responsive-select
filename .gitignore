@@ -2,7 +2,6 @@ node_modules
 .DS_Store
 .cache-loader
 storybook-static
-dist
 ts
 ts-esm
 src/coverage

@@ -9,6 +9,7 @@ export interface IProps {
     markup?: React.ReactNode;
     disabled?: boolean;
   }>;
+  
   noSelectionLabel?: string;
   onSubmit?: (event: any) => void;
   /**
@@ -45,6 +46,8 @@ export interface IProps {
   }) => void;
   caretIcon?: React.ReactNode;
   selectedValue?: string;
+  backButtonName?: string;
+  title?: string;
   prefix?: string;
   disabled?: boolean;
   /**
@@ -113,6 +116,8 @@ export interface IState {
     name?: string;
     value?: string;
   };
+  backButtonName?: string;
+  title?: string;
 }
 
 /*
@@ -123,11 +128,14 @@ export interface IState {
 */
 
 export interface IOption {
-  text?: string;
+  subtitle?: any;
+  arrow?: any;
+  text?: any;
   value?: string;
   optHeader?: boolean;
   markup?: React.ReactNode;
   disabled?: boolean;
+  image?: string;
 }
 
 export interface IOutputSingleSelect {

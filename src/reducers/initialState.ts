@@ -8,6 +8,8 @@ export const initialState = {
   isDragging: false,
   isOptionsPanelOpen: false,
   altered: false,
+  title: '',
+  backButtonName: '',
 
   // Single select
   singleSelectInitialIndex: 0,
