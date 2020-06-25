@@ -103,7 +103,7 @@ export class SingleSelectOption extends React.Component<TProps> {
         `)}
       >
         {option.image &&
-          option.image.svg ? (
+          option.svg ? (
             <div className="imgWithSvg">
               <svg dangerouslySetInnerHTML={{ __html: option.svg }} fill={option.color}></svg>
 
