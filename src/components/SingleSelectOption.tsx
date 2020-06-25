@@ -9,7 +9,7 @@ interface TProps {
   isOptionsPanelOpen: boolean;
   optionsContainerRef: React.RefObject<HTMLUListElement>;
   nextPotentialSelectionIndex: number;
-  option: IOption;
+  option: any;
   singleSelectSelectedIndex: number;
   optHeaderLabel: string;
 }
@@ -44,7 +44,7 @@ export class SingleSelectOption extends React.Component<TProps> {
         if (optHeaderLabel !== '') {
           const scrollDiff = Math.ceil(
             this.optionRef.current.getBoundingClientRect().top -
-              optionsContainerRef.current.getBoundingClientRect().top,
+            optionsContainerRef.current.getBoundingClientRect().top,
           );
 
           this.scrollOffset = this.scrollOffset || this.getScrollOffset();
@@ -84,9 +84,9 @@ export class SingleSelectOption extends React.Component<TProps> {
         aria-disabled={this.isDisabled(option) ? 'true' : 'false'}
         aria-label={`
           ${option.text ||
-            (option.markup && (option.markup as HTMLElement).textContent)} ${
+          (option.markup && (option.markup as HTMLElement).textContent)} ${
           optHeaderLabel !== '' ? ` of ${optHeaderLabel}` : ''
-        }
+          }
         `}
         data-key={index}
         ref={this.optionRef}
@@ -94,20 +94,30 @@ export class SingleSelectOption extends React.Component<TProps> {
           rrs__option
           ${singleSelectSelectedIndex === index ? 'rrs__option--selected' : ''}
           ${
-            nextPotentialSelectionIndex === index
-              ? 'rrs__option--next-selection'
-              : ''
+          nextPotentialSelectionIndex === index
+            ? 'rrs__option--next-selection'
+            : ''
           }
           ${option.disabled === true ? 'rrs__option--disabled' : ''}
           ${option.optHeader === true ? 'rrs__option--header' : ''}
         `)}
       >
         {option.image &&
-          <img alt={option.text.replace("<[^>]*>", "")} src={option.image} />
-        }
+          option.image.svg ? (
+            <div className="imgWithSvg">
+              <svg dangerouslySetInnerHTML={{ __html: option.svg }} fill={option.color}></svg>
+
+              <img alt={option.text.replace("<[^>]*>", "")} src={option.image} />
+            </div>
+          ) : (
+            <div className="imgWithoutSvg">
+              <img alt={option.text.replace("<[^>]*>", "")} src={option.image} />
+            </div>
+          )}
+
         <div className="rrs__option__container">
           <div className="rrs__option__subcontainer">
-            <span dangerouslySetInnerHTML={{__html: option.text}}></span>
+            <span dangerouslySetInnerHTML={{ __html: option.text }}></span>
             <span className="rrs_arrow">&#8250;</span>
           </div>
         </div>
